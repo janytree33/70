@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>장연화 여사의 칠순 고희연</title>
+  <meta name="description" content="장연화 여사의 칠순 고희연 초대장 - 2026년 6월 5일 금요일 낮 12시" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================
+       전체 리셋 및 기본 설정
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --color-bg:        #FAF6F0;
+      --color-bg-card:   #FFFDF8;
+      --color-gold:      #B8962E;
+      --color-gold-light:#D4AF5A;
+      --color-gold-pale: #F0E0A0;
+      --color-text-dark: #3A2F20;
+      --color-text-mid:  #6B5740;
+      --color-text-light:#9C8460;
+      --color-border:    #DFC98A;
+      --color-divider:   #E8D5A0;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background-color: var(--color-bg);
+      font-family: 'Noto Serif KR', serif;
+      color: var(--color-text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ============================================
+       애니메이션 정의
+       ============================================ */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-6px); }
+    }
+    @keyframes petalFall {
+      0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    /* 사진 줌인 호버 효과 */
+    @keyframes zoomInPhoto {
+      from { transform: scale(1.0); }
+      to   { transform: scale(1.06); }
+    }
+
+    /* ============================================
+       스크롤 감지 애니메이션 클래스
+       ============================================ */
+    .anim-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+    .anim-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .anim-zoom {
+      opacity: 0;
+      transform: scale(0.93);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .anim-zoom.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ============================================
+       꽃잎 파티클
+       ============================================ */
+    .petals-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      animation: petalFall linear infinite;
+      opacity: 0;
+    }
+
+    /* ============================================
+       메인 래퍼
+       ============================================ */
+    .invitation-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding-bottom: 60px;
+    }
+
+    /* ============================================
+       헤더
+       ============================================ */
+    .header-banner {
+      width: 100%;
+      background: linear-gradient(135deg, #2A1F0E 0%, #4A3520 30%, #5C4020 50%, #4A3520 70%, #2A1F0E 100%);
+      padding: 54px 30px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.2s ease forwards;
+    }
+    .header-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(105deg, transparent 35%, rgba(212,175,90,0.12) 50%, transparent 65%);
+      background-size: 200% 100%;
+      animation: shimmer 5s linear infinite;
+    }
+    .header-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--color-gold-light), var(--color-gold), var(--color-gold-light), transparent);
+    }
+    .header-ornament {
+      font-size: 1.8rem;
+      color: var(--color-gold-pale);
+      margin-bottom: 14px;
+      letter-spacing: 10px;
+      opacity: 0.85;
+    }
+    .header-subtitle {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--color-gold-pale);
+      letter-spacing: 10px;
+      margin-bottom: 22px;
+      opacity: 0.8;
+    }
+    .header-title-kor {
+      font-size: 2.7rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.3;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+    }
+    .header-title-kor span {
+      background: linear-gradient(135deg, var(--color-gold-pale), var(--color-gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header-title-hanja {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--color-gold-pale);
+      letter-spacing: 6px;
+      margin-top: 6px;
+      opacity: 0.75;
+    }
+    .header-deco-bottom {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .header-deco-line {
+      height: 1px;
+      width: 55px;
+      background: linear-gradient(90deg, transparent, var(--color-gold-pale));
+      opacity: 0.55;
+    }
+    .header-deco-line.right {
+      background: linear-gradient(90deg, var(--color-gold-pale), transparent);
+    }
+    .header-deco-icon {
+      font-size: 1.4rem;
+      color: var(--color-gold-pale);
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    /* ============================================
+       초대 인사말
+       ============================================ */
+    .invite-section {
+      background: var(--color-bg-card);
+      text-align: center;
+      padding: 48px 32px;
+    }
+    .gold-accent-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+    .gold-line {
+      height: 1px;
+      flex: 1;
+      max-width: 70px;
+      background: linear-gradient(90deg, transparent, var(--color-gold));
+    }
+    .gold-line.right {
+      background: linear-gradient(90deg, var(--color-gold), transparent);
+    }
+    .gold-diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--color-gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .invite-greeting {
+      font-size: 1.18rem;
+      font-weight: 400;
+      line-height: 2.2;
+      color: var(--color-text-mid);
+      word-break: keep-all;
+      letter-spacing: 0.3px;
+    }
+
+    /* ============================================
+       사진 슬라이드쇼 갤러리
+       ============================================ */
+    .gallery-section {
+      padding: 44px 20px;
+      background: var(--color-bg);
+    }
+    .section-label {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .section-label-text {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--color-gold);
+      letter-spacing: 7px;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    /* ── 슬라이더 바깥 틀 ── */
+    .slideshow-wrap {
+      position: relative;
+      width: 100%;
+      /* 540:720 = 3:4 비율 유지 */
+      aspect-ratio: 3 / 4;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(90,60,20,0.22);
+    }
+
+    /* ── 슬라이드 각각 ── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;                    /* 기본은 숨김 */
+      transition: opacity 0.6s ease; /* 부드러운 페이드 */
+      pointer-events: none;
+    }
+    .slide.active {
+      opacity: 1;                    /* 현재 슬라이드만 보임 */
+      pointer-events: auto;
+    }
+
+    /* 슬라이드 안의 실제 사진 */
+    .slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;   /* 얼굴이 잘리지 않도록 */
+      display: block;
+      /* 슬라이드가 활성화될 때 천천히 줌인 */
+      transform: scale(1.0);
+      transition: transform 4s ease; /* 4초 동안 서서히 확대 */
+    }
+    .slide.active .slide-img {
+      transform: scale(1.07);        /* 활성화 시 7% 확대 */
+    }
+
+    /* ── 카메라 플래시 오버레이 ──
+       사진이 바뀔 때 화면 전체가 잠깐 하얗게 번쩍이는 효과 */
+    @keyframes flashBurst {
+      0%   { opacity: 0; }
+      15%  { opacity: 0.85; }   /* 빠르게 밝아짐 */
+      100% { opacity: 0; }      /* 서서히 사라짐 */
+    }
+    .flash-overlay {
+      position: absolute;
+      inset: 0;
+      background: #FFFBE8;       /* 따뜻한 크림 화이트 플래시 */
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+      border-radius: 20px;
+    }
+    .flash-overlay.flashing {
+      animation: flashBurst 0.55s ease-out forwards;
+    }
+
+    /* 하단 그라디언트 오버레이 (사진 아래쪽 살짝 어둡게) */
+    .slide-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(transparent, rgba(42,31,14,0.2));
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* ── 골드 모서리 장식 ── */
+    .photo-corner {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: rgba(212,175,90,0.85);
+      border-style: solid;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .photo-corner.tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+    .photo-corner.tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+    .photo-corner.bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+    .photo-corner.br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+
+    /* ── 하단 점(도트) 인디케이터: 몇 번째 사진인지 표시 ── */
+    .slide-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .slide-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+    .slide-dot.active {
+      background: var(--color-gold);
+      transform: scale(1.35);   /* 현재 사진 도트는 조금 크게 */
+    }
+
+    /* ── 슬라이드 번호 텍스트 (예: 1 / 3) ── */
+    .slide-counter {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--color-text-light);
+      font-family: 'Noto Sans KR', sans-serif;
+      letter-spacing: 2px;
+    }
+
+    /* ============================================
+       행사 안내 (일시/장소)
+       ============================================ */
+    .info-section {
+      background: var(--color-bg-card);
+      padding: 48px 28px;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--color-gold);
+      letter-spacing: 6px;
+      font-family: 'Noto Sans KR', sans-serif;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .section-title-kr {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--color-text-dark);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .info-card {
+      background: linear-gradient(135deg, rgba(184,150,46,0.06), rgba(240,224,160,0.13), rgba(184,150,46,0.06));
+      border: 1px solid var(--color-divider);
+      border-radius: 22px;
+      padding: 38px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .info-card::before {
+      content: '壽';
+      position: absolute;
+      font-size: 10rem;
+      color: var(--color-gold-pale);
+      opacity: 0.07;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-icon-wrap {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 14px rgba(184,150,46,0.3);
+    }
+    .info-content { flex: 1; padding-top: 4px; }
+    .info-label {
+      font-size: 0.76rem;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: var(--color-gold);
+      letter-spacing: 4px;
+      font-weight: 500;
+      margin-bottom: 7px;
+    }
+    .info-value {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text-dark);
+      line-height: 1.55;
+      letter-spacing: 0.5px;
+    }
+    .info-value-sub {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--color-text-light);
+      margin-top: 4px;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .info-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-divider), var(--color-divider), transparent);
+      margin: 24px 0;
+    }
+
+    /* ============================================
+       지도 링크
+       ============================================ */
+    .map-section {
+      padding: 32px 24px 44px;
+      background: var(--color-bg);
+    }
+    .map-box {
+      width: 100%;
+      height: 185px;
+      background: linear-gradient(135deg, #EDE0C8, #F0E8D2);
+      border-radius: 18px;
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      position: relative;
+    }
+    .map-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(184,150,46,0.09) 0%, transparent 70%);
+    }
+    .map-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(184,150,46,0.22);
+    }
+    .map-icon { font-size: 2.6rem; filter: drop-shadow(0 2px 8px rgba(184,150,46,0.4)); }
+    .map-text {
+      font-size: 1.05rem;
+      color: var(--color-text-mid);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .map-subtext {
+      font-size: 0.8rem;
+      color: var(--color-text-light);
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    /* ============================================
+       마무리 인사
+       ============================================ */
+    .closing-section {
+      background: linear-gradient(160deg, #2A1F0E 0%, #3D2D14 40%, #4A3520 100%);
+      padding: 58px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .closing-section::before {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,150,46,0.1) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .closing-ornament {
+      font-size: 2.6rem;
+      margin-bottom: 22px;
+      display: block;
+      animation: float 4s ease-in-out infinite;
+    }
+    .closing-text {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 3px;
+      margin-bottom: 18px;
+      line-height: 1.65;
+    }
+    .closing-divider {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-gold-light), transparent);
+      margin: 26px auto;
+    }
+    .closing-sub {
+      font-size: 0.98rem;
+      color: var(--color-gold-pale);
+      opacity: 0.75;
+      letter-spacing: 2px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+    }
+    .closing-hanja {
+      font-size: 3rem;
+      color: var(--color-gold-light);
+      opacity: 0.3;
+      letter-spacing: 14px;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    /* ============================================
+       푸터
+       ============================================ */
+    .footer {
+      background: #1E160A;
+      padding: 26px;
+      text-align: center;
+    }
+    .footer-text {
+      font-size: 0.78rem;
+      color: rgba(212,175,90,0.4);
+      font-family: 'Noto Sans KR', sans-serif;
+      letter-spacing: 1px;
+      line-height: 1.8;
+    }
+
+    /* ============================================
+       데스크톱 반응형
+       ============================================ */
+    @media (min-width: 480px) {
+      body {
+        background: linear-gradient(135deg, #E0CBA8, #F0E8D0, #E0CBA8);
+        background-attachment: fixed;
+      }
+      .invitation-wrapper {
+        margin: 30px auto;
+        box-shadow: 0 24px 90px rgba(0,0,0,0.22);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 꽃잎 파티클 배경 -->
+  <div class="petals-container" id="petalsContainer"></div>
+
+  <div class="invitation-wrapper">
+
+    <!-- ====== 1. 헤더 ====== -->
+    <header class="header-banner">
+      <div class="header-ornament">❀ ✦ ❀</div>
+      <p class="header-subtitle">고 &nbsp; 희 &nbsp; 연</p>
+      <h1 class="header-title-kor">
+        장연화 여사의<br />
+        <span>칠 &nbsp; 순</span>
+      </h1>
+      <p class="header-title-hanja">古稀宴 &nbsp;·&nbsp; 七旬</p>
+      <div class="header-deco-bottom">
+        <div class="header-deco-line"></div>
+        <div class="header-deco-icon">🌸</div>
+        <div class="header-deco-line right"></div>
+      </div>
+    </header>
+
+    <!-- ====== 2. 초대 인사말 ====== -->
+    <section class="invite-section anim-item">
+      <div class="gold-accent-top">
+        <div class="gold-line"></div>
+        <div class="gold-diamond"></div>
+        <div class="gold-line right"></div>
+      </div>
+      <p class="invite-greeting">
+        사랑하는 우리 가족들이 함께 모여<br />
+        어머니의 일흔 번째 생신을 축하하는<br />
+        편안한 식사 자리를 마련했습니다.<br />
+        <br />
+        소중한 걸음 하셔서<br />
+        기쁜 날을 함께 빛내주세요.
+      </p>
+      <div class="gold-accent-top" style="margin-top:34px; margin-bottom:0;">
+        <div class="gold-line"></div>
+        <div class="gold-diamond"></div>
+        <div class="gold-line right"></div>
+      </div>
+    </section>
+
+    <!-- ====== 3. 사진 슬라이드쇼 갤러리 ====== -->
+    <section class="gallery-section anim-zoom">
+      <div class="section-label">
+        <p class="section-label-text">✦ &nbsp; P H O T O &nbsp; ✦</p>
+      </div>
+
+      <!-- 슬라이드쇼 틀 -->
+      <div class="slideshow-wrap" id="slideshowWrap">
+
+        <!-- 카메라 플래시 효과 레이어 (사진 전환 시 번쩍임) -->
+        <div class="flash-overlay" id="flashOverlay"></div>
+
+        <!-- 사진 1 -->
+        <div class="slide active" id="slide0">
+          <img src="photo1.jpg" alt="장연화 여사 사진 1" class="slide-img" />
+        </div>
+
+        <!-- 사진 2 -->
+        <div class="slide" id="slide1">
+          <img src="photo2.jpg" alt="장연화 여사 사진 2" class="slide-img" />
+        </div>
+
+        <!-- 사진 3 -->
+        <div class="slide" id="slide2">
+          <img src="photo3.jpg" alt="장연화 여사 사진 3" class="slide-img" />
+        </div>
+
+        <!-- 하단 그라디언트 오버레이 -->
+        <div class="slide-overlay"></div>
+
+        <!-- 골드 모서리 장식 -->
+        <div class="photo-corner tl"></div>
+        <div class="photo-corner tr"></div>
+        <div class="photo-corner bl"></div>
+        <div class="photo-corner br"></div>
+      </div>
+
+      <!-- 하단 점 인디케이터 (1번째/2번째/3번째 표시) -->
+      <div class="slide-dots">
+        <button class="slide-dot active" id="dot0" onclick="goToSlide(0)" aria-label="사진 1"></button>
+        <button class="slide-dot" id="dot1" onclick="goToSlide(1)" aria-label="사진 2"></button>
+        <button class="slide-dot" id="dot2" onclick="goToSlide(2)" aria-label="사진 3"></button>
+      </div>
+
+      <!-- 현재 번호 표시 -->
+      <p class="slide-counter" id="slideCounter">1 &nbsp;/&nbsp; 3</p>
+    </section>
+
+    <!-- ====== 4. 행사 안내 ====== -->
+    <section class="info-section">
+      <div class="section-title anim-item">INVITATION DETAILS</div>
+      <div class="section-title-kr anim-item">행 사 안 내</div>
+
+      <div class="info-card anim-item">
+        <div class="info-row">
+          <div class="info-icon-wrap">📅</div>
+          <div class="info-content">
+            <p class="info-label">일 &nbsp; 시</p>
+            <p class="info-value">2026년 6월 5일 금요일</p>
+            <p class="info-value">낮 12시 (오후 12:00)</p>
+          </div>
+        </div>
+
+        <div class="info-divider"></div>
+
+        <div class="info-row">
+          <div class="info-icon-wrap">📍</div>
+          <div class="info-content">
+            <p class="info-label">장 &nbsp; 소</p>
+            <p class="info-value">조선갈비실록 구로점</p>
+            <p class="info-value-sub">예약자 성함 · 장 연 화</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== 5. 지도 링크 ====== -->
+    <section class="map-section anim-item">
+      <a class="map-box"
+         href="https://map.kakao.com/link/search/조선갈비실록 구로점"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span class="map-icon">🗺️</span>
+        <span class="map-text">📍 조선갈비실록 구로점</span>
+        <span class="map-subtext">탭하시면 카카오지도로 연결됩니다</span>
+      </a>
+    </section>
+
+    <!-- ====== 6. 마무리 인사 ====== -->
+    <section class="closing-section anim-item">
+      <span class="closing-ornament">🌺</span>
+      <p class="closing-text">
+        건강하고 행복한<br />
+        100세를 기원합니다
+      </p>
+      <div class="closing-divider"></div>
+      <p class="closing-sub">
+        언제나 건강하시고<br />
+        행복한 날들만 가득하시길
+      </p>
+      <div class="closing-hanja">壽 · 福</div>
+    </section>
+
+    <!-- ====== 7. 푸터 ====== -->
+    <footer class="footer">
+      <p class="footer-text">
+        장연화 여사님의 칠순 &nbsp;·&nbsp; 2026년 6월 5일<br />
+        ✦ &nbsp; 고희연 초대장 &nbsp; ✦
+      </p>
+    </footer>
+
+  </div><!-- /invitation-wrapper -->
+
+  <!-- ============================================
+       JavaScript
+       ============================================ -->
+  <script>
+    // ====================================================
+    // 1. 꽃잎 파티클 생성
+    // ====================================================
+    function createPetals() {
+      const container = document.getElementById('petalsContainer');
+      const petalEmojis = ['🌸', '🌺', '✿', '❀', '🌼'];
+      const petalCount = 10;
+
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('span');
+        petal.className = 'petal';
+        petal.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+        petal.style.left = Math.random() * 100 + 'vw';
+        const duration = 9 + Math.random() * 13;
+        petal.style.animationDuration = duration + 's';
+        petal.style.animationDelay = -(Math.random() * duration) + 's';
+        petal.style.fontSize = (0.8 + Math.random() * 0.9) + 'rem';
+        container.appendChild(petal);
+      }
+    }
+
+    // ====================================================
+    // 2. 스크롤 감지 Fade-in / Zoom 애니메이션
+    //    화면에 요소가 들어오면 자동으로 나타나게 함
+    // ====================================================
+    function initScrollAnimation() {
+      const observer = new IntersectionObserver(
+        function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -20px 0px' }
+      );
+
+      document.querySelectorAll('.anim-item').forEach(el => observer.observe(el));
+      document.querySelectorAll('.anim-zoom').forEach(el => observer.observe(el));
+    }
+
+    // ====================================================
+    // 3. 슬라이드쇼 + 플래시 효과
+    // ====================================================
+    var currentSlide = 0;          // 현재 보이는 슬라이드 번호 (0,1,2)
+    var totalSlides  = 3;          // 사진 총 개수
+    var slideTimer   = null;       // 자동 넘김 타이머
+    var SLIDE_INTERVAL = 3000;     // 사진 자동 넘김 간격 (3초)
+
+    // 특정 슬라이드로 이동하는 함수
+    function goToSlide(nextIndex) {
+      // 현재 슬라이드에서 active 클래스 제거 (사라지게)
+      document.getElementById('slide' + currentSlide).classList.remove('active');
+      document.getElementById('dot'   + currentSlide).classList.remove('active');
+
+      // 플래시 효과 실행!
+      // flashing 클래스를 추가하면 CSS 애니메이션이 실행됨
+      var flash = document.getElementById('flashOverlay');
+      flash.classList.remove('flashing'); // 기존 애니메이션 초기화
+      // 브라우저가 변경을 인식할 수 있도록 아주 짧은 딜레이 후 다시 추가
+      void flash.offsetWidth;
+      flash.classList.add('flashing');
+
+      // 다음 슬라이드로 업데이트
+      currentSlide = nextIndex;
+
+      // 새 슬라이드에 active 클래스 추가 (나타나게)
+      document.getElementById('slide' + currentSlide).classList.add('active');
+      document.getElementById('dot'   + currentSlide).classList.add('active');
+
+      // 하단 숫자 카운터 업데이트 (예: "2 / 3")
+      document.getElementById('slideCounter').innerHTML =
+        (currentSlide + 1) + ' &nbsp;/&nbsp; ' + totalSlides;
+
+      // 애니메이션이 끝나면 flashing 클래스 제거
+      flash.addEventListener('animationend', function() {
+        flash.classList.remove('flashing');
+      }, { once: true }); // once:true = 한 번만 실행 후 자동 제거
+    }
+
+    // 다음 슬라이드로 자동 이동
+    function nextSlide() {
+      var next = (currentSlide + 1) % totalSlides; // 마지막이면 다시 0번으로
+      goToSlide(next);
+    }
+
+    // 자동 슬라이드 시작
+    function startAutoSlide() {
+      stopAutoSlide(); // 혹시 기존 타이머가 있으면 먼저 정리
+      slideTimer = setInterval(nextSlide, SLIDE_INTERVAL);
+    }
+
+    // 자동 슬라이드 멈춤 (손으로 탭했을 때)
+    function stopAutoSlide() {
+      if (slideTimer) {
+        clearInterval(slideTimer);
+        slideTimer = null;
+      }
+    }
+
+    // 슬라이드쇼 초기화: 터치/스와이프 지원 추가
+    function initSlideshow() {
+      startAutoSlide(); // 자동 시작
+
+      var wrap = document.getElementById('slideshowWrap');
+      if (!wrap) return;
+
+      // 터치 스와이프로 사진 넘기기
+      var touchStartX = 0;
+      wrap.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        stopAutoSlide(); // 터치 시 자동 넘김 일시 정지
+      }, { passive: true });
+
+      wrap.addEventListener('touchend', function(e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) { // 40px 이상 스와이프했을 때만 반응
+          if (diff > 0) {
+            // 왼쪽으로 스와이프 → 다음 사진
+            goToSlide((currentSlide + 1) % totalSlides);
+          } else {
+            // 오른쪽으로 스와이프 → 이전 사진
+            goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+          }
+        }
+        // 2초 후 자동 넘김 재개
+        setTimeout(startAutoSlide, 2000);
+      }, { passive: true });
+    }
+
+    // ====================================================
+    // 4. 사진 로드 에러 처리
+    // ====================================================
+    function handlePhotoErrors() {
+      var placeholders = ['🌺', '🌸', '🌼'];
+      document.querySelectorAll('.slide-img').forEach(function(img, idx) {
+        img.addEventListener('error', function() {
+          var parent = img.parentElement;
+          img.style.display = 'none';
+          var ph = document.createElement('div');
+          ph.style.cssText = 'width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#EDE0C8,#F5ECD6);gap:10px;';
+          ph.innerHTML = '<span style="font-size:3rem;opacity:0.45;">' + placeholders[idx] + '</span><span style="font-size:0.85rem;color:#9C8460;font-family:sans-serif;letter-spacing:1px;">사진 ' + (idx+1) + '</span>';
+          parent.appendChild(ph);
+        });
+      });
+    }
+
+    // ====================================================
+    // 5. 페이지 로드 후 전체 초기화
+    // ====================================================
+    document.addEventListener('DOMContentLoaded', function() {
+      createPetals();         // 꽃잎 파티클
+      initScrollAnimation();  // 스크롤 페이드인
+      initSlideshow();        // 슬라이드쇼 + 플래시
+      handlePhotoErrors();    // 사진 에러 처리
+    });
+  </script>
+</body>
+</html>
